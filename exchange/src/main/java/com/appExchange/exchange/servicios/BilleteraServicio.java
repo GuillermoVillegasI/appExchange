@@ -1,6 +1,7 @@
 package com.appExchange.exchange.servicios;
 
 import com.appExchange.exchange.entidades.Billetera;
+import com.appExchange.exchange.errores.ErrorServicio;
 import com.appExchange.exchange.repositorios.BilleteraRepositorio;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -13,13 +14,13 @@ public class BilleteraServicio {
     @Autowired
     BilleteraRepositorio billeteraRepositorio;
 
-    public Billetera buscarPorId(Integer id) throws Exception {
+    public Billetera buscarPorId(Integer id) throws ErrorServicio {
         Optional<Billetera> respuesta = billeteraRepositorio.findById(id);
         if (respuesta.isPresent()) {
             Billetera billetera = respuesta.get();
             return billetera;
         } else {
-            throw new Exception("NO EXISTE ESA BILLETERA");
+            throw new ErrorServicio("NO EXISTE ESA BILLETERA");
         }
     }
 
@@ -38,7 +39,7 @@ public class BilleteraServicio {
         if (billeteraRespuesta.isPresent()) {
             billeteraRepositorio.deleteById(billeteraRespuesta.get().getId());
         }else{
-            throw new Exception(" No se encontro la billetera ");
+            throw new ErrorServicio(" No se encontro la billetera ");
         }
         
     }

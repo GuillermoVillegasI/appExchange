@@ -62,13 +62,6 @@ public class Usuario {
         this.id = id;
     }
 
-//    public List<Billetera> getBilletera() {
-//        return billetera;
-//    }
-//
-//    public void setBilletera(List<Billetera> billetera) {
-//        this.billetera = billetera;
-//    }
 
     public Usuario(Integer id) {
         this.id = id;

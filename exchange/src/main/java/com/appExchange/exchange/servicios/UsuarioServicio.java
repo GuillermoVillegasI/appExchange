@@ -23,13 +23,13 @@ public class UsuarioServicio {
     @Autowired
     BilleteraServicio billeteraServicio;
 
-    public Usuario buscarPorId(Integer id) throws Exception {
+    public Usuario buscarPorId(Integer id) throws ErrorServicio {
         Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
         if (respuesta.isPresent()) {
             Usuario usuario = respuesta.get();
             return usuario;
         } else {
-            throw new Exception("NO EXISTE ESE USUARIO");
+            throw new ErrorServicio("NO EXISTE ESE USUARIO");
         }
     }
 
@@ -42,7 +42,7 @@ public class UsuarioServicio {
         return usuarioRepositorio.save(usuario);
     }
 
-    public void eliminarUsuario(Integer id) throws Exception {
+    public void eliminarUsuario(Integer id) throws ErrorServicio {
         Optional<Usuario> usuarioRespuesta = usuarioRepositorio.findById(id);
         List<Billetera> billeteraRespuesta = billeteraRepositorio.buscarPorUsuario(id);
          if (usuarioRespuesta.isPresent()) {
@@ -52,7 +52,7 @@ public class UsuarioServicio {
                 throw new ErrorServicio("ERROR ! La usuario tiene una o mas Billeteras asignadas ");
             }                
         } else {
-            throw new Exception(" No se encontro el usuario ");
+            throw new ErrorServicio(" No se encontro el usuario ");
         }
     }
 

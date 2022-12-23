@@ -29,7 +29,7 @@ public class DivisaControlador {
     }
 
     @GetMapping()
-    public ArrayList<Divisa> listarUsuarios() {
+    public ArrayList<Divisa> listarDivisas() {
         return divisaServicio.listarDivisas();
     }
 
